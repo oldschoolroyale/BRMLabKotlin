@@ -66,13 +66,6 @@
             app:destination="@id/noteFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />
-        <action
-            android:id="@+id/action_doctorListFragment_to_noteAddFragment"
-            app:destination="@id/noteAddFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/doctorAddFragment"
@@ -107,19 +100,5 @@
         <argument
             android:name="region"
             app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/noteAddFragment"
-        android:name="com.brm.brmlabkotlin.fragments.NoteAddFragment"
-        android:label="fragment_note_add"
-        tools:layout="@layout/fragment_note_add" >
-        <action
-            android:id="@+id/action_noteAddFragment_to_doctorListFragment"
-            app:destination="@id/doctorListFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
-        <argument
-            android:name="array"
-            app:argType="string[]" />
     </fragment>
 </navigation>
