@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">BRMLabKotlin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registration_text">Пожалуйста, введите код страны и номер телефона для регистрации</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="registration">Зарегестрироваться</string>
+    <string name="xxx">XXX</string>
+    <string name="enter_code">Введите код</string>
+    <string name="autorization">Авторизоваться</string>
+    <string name="sms_text">Мы отправили вам смс с кодом подтвержения</string>
+    <string name="settings">Настройки</string>
+    <string name="exit">Выйти</string>
+    <string name="empty_text">Тут пока пусто</string>
+    <string name="add_smth">Добавьте карточку из базы данных</string>
+    <string name="task">Список задач</string>
+    <string name="add_doctor">Добавить врача</string>
+    <string name="add_pharmacy">Добавить аптеку</string>
+    <string name="actionbar_spinner">ActionBar Spinner</string>
+    <string name="add">Добавить</string>
+
+    <string-array name="dataCategory">
+        <item>Doctor</item>
+        <item>Pharmacy</item>
+    </string-array>
+
+    <string-array name="categoryOfMission">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+    <string-array name="statusOfMission">
+        <item>Активный</item>
+        <item>Не активный</item>
+    </string-array>
+</resources>

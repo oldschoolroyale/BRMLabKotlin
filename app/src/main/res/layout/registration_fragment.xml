@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.RegistrationActivity"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginEnd="33dp"
+        android:layout_marginStart="33dp">
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/phone"
+            android:layout_marginBottom="30dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registration_text"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="+"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/text_input_bg"
+                android:ems="10"
+                android:padding="16dp"
+                android:layout_marginEnd="5dp"
+                android:hint="@string/xxx"
+                android:inputType="number"
+                android:id="@+id/activity_registration_country_code" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_input_bg"
+                android:layout_weight="10"
+                android:padding="16dp"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                android:id="@+id/activity_registration_phone_number" />
+
+        </LinearLayout>
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/activity_registration_anim_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="button"
+            android:text="@string/registration"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            android:layout_marginTop="16dp"
+            android:navigateToCodeFragment="@{true}"/>
+    </LinearLayout>
+</layout>
+

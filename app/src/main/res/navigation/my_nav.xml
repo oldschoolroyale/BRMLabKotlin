@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/registrationFragment">
+
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.brm.brmlabkotlin.fragments.loginFragments.RegistrationFragment"
+        android:label="BRMLab"
+        tools:layout="@layout/registration_fragment">
+        <action
+            android:id="@+id/action_registrationFragment_to_codeSendFragment"
+            app:destination="@id/codeSendFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/codeSendFragment"
+        android:name="com.brm.brmlabkotlin.fragments.loginFragments.CodeSendFragment"
+        android:label="Phone auntefication"
+        tools:layout="@layout/code_send_fragment">
+        <action
+            android:id="@+id/action_codeSendFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+        <argument
+            android:name="code"
+            android:defaultValue='"null"'
+            app:argType="string" />
+    </fragment>
+</navigation>

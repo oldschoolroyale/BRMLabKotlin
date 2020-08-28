@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/data_base_menu_spinner"
+        android:title="@string/actionbar_spinner"
+        app:actionViewClass="android.widget.Spinner"
+        android:background="@android:color/transparent"
+        android:spinnerMode="dialog"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/data_base_menu_doctor"
+        android:title="@string/add_doctor"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/data_base_menu_pharmacy"
+        android:title="@string/add_pharmacy"
+        app:showAsAction="never"/>
+</menu>

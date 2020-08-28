@@ -1,0 +1,172 @@
+{
+  "project_info": {
+    "project_number": "1039312371949",
+    "firebase_url": "https://crm-project-e1298.firebaseio.com",
+    "project_id": "crm-project-e1298",
+    "storage_bucket": "crm-project-e1298.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039312371949:android:3cdad63d3f3d1d0078cce4",
+        "android_client_info": {
+          "package_name": "com.brm.brmlabkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqiVKAGJip9YKtPsPIujsuTtgi6h1qRY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039312371949:android:2d28d0a1a13aa9cf78cce4",
+        "android_client_info": {
+          "package_name": "com.brm.uz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039312371949-0vkiqkavsi3nb3hcbj09hqdeb5gm3lu9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brm.uz",
+            "certificate_hash": "2638db09f38456cf32ea0f86ae2c966435d50b83"
+          }
+        },
+        {
+          "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqiVKAGJip9YKtPsPIujsuTtgi6h1qRY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039312371949:android:452fced0292f473c78cce4",
+        "android_client_info": {
+          "package_name": "com.example.autofill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqiVKAGJip9YKtPsPIujsuTtgi6h1qRY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039312371949:android:352d4398a7c06ee978cce4",
+        "android_client_info": {
+          "package_name": "com.example.brmadminkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqiVKAGJip9YKtPsPIujsuTtgi6h1qRY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039312371949:android:0b23fc159da3e2d778cce4",
+        "android_client_info": {
+          "package_name": "com.example.crm_project_server"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039312371949-965nuqfj8beuf5tj0nmrtpc9u69hbdd3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crm_project_server",
+            "certificate_hash": "2638db09f38456cf32ea0f86ae2c966435d50b83"
+          }
+        },
+        {
+          "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqiVKAGJip9YKtPsPIujsuTtgi6h1qRY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039312371949-i1qpkmman8s641anr2v8r5m9h53na9iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

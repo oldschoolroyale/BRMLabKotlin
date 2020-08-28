@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/noteFragment">
+
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.brm.brmlabkotlin.fragments.NoteFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_note">
+        <action
+            android:id="@+id/action_noteFragment_to_updateFragment"
+            app:destination="@id/updateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_noteFragment_to_doctorListFragment"
+            app:destination="@id/doctorListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.brm.brmlabkotlin.fragments.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_noteFragment"
+            app:destination="@id/noteFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorListFragment"
+        android:name="com.brm.brmlabkotlin.fragments.DataBaseFragment"
+        android:label="ДБ"
+        tools:layout="@layout/fragment_data_base">
+        <action
+            android:id="@+id/action_doctorListFragment_to_doctorAddFragment"
+            app:destination="@id/doctorAddFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_doctorListFragment_to_pharmacyAddFragment"
+            app:destination="@id/pharmacyAddFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <argument
+            android:name="town"
+            app:argType="string" />
+        <argument
+            android:name="region"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_doctorListFragment_to_noteFragment"
+            app:destination="@id/noteFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_doctorListFragment_to_noteAddFragment"
+            app:destination="@id/noteAddFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorAddFragment"
+        android:name="com.brm.brmlabkotlin.fragments.DoctorAddFragment"
+        android:label="Дата база врачей"
+        tools:layout="@layout/fragment_doctor_add">
+        <action
+            android:id="@+id/action_doctorAddFragment_to_doctorListFragment"
+            app:destination="@id/doctorListFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
+        <argument
+            android:name="town"
+            app:argType="string" />
+        <argument
+            android:name="region"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/pharmacyAddFragment"
+        android:name="com.brm.brmlabkotlin.fragments.PharmacyAddFragment"
+        android:label="Дата база аптек"
+        tools:layout="@layout/fragment_pharmacy_add">
+        <action
+            android:id="@+id/action_pharmacyAddFragment_to_doctorListFragment"
+            app:destination="@id/doctorListFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
+        <argument
+            android:name="town"
+            app:argType="string" />
+        <argument
+            android:name="region"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteAddFragment"
+        android:name="com.brm.brmlabkotlin.fragments.NoteAddFragment"
+        android:label="fragment_note_add"
+        tools:layout="@layout/fragment_note_add" >
+        <action
+            android:id="@+id/action_noteAddFragment_to_doctorListFragment"
+            app:destination="@id/doctorListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+        <argument
+            android:name="array"
+            app:argType="string[]" />
+    </fragment>
+</navigation>
