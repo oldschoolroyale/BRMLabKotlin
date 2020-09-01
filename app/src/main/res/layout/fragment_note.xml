@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-    
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fragment_note_circle_image"
         android:layout_width="71dp"
@@ -48,36 +48,84 @@
         android:textColor="#fff"
         android:textSize="16sp"/>
 
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/fragment_note_view_pager2"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        android:overScrollMode="never"
-        app:layout_constraintTop_toBottomOf="@id/fragment_note_circle_image">
-    </androidx.viewpager2.widget.ViewPager2>
     <androidx.cardview.widget.CardView
-        android:id="@+id/fragment_note_view_fragment"
+        android:id="@+id/fragment_note_view_data_card_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:overScrollMode="never"
-        app:layout_constraintTop_toBottomOf="@id/fragment_note_view_pager2" />
-    <LinearLayout
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_note_circle_image">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11478F"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/link"
+                    android:background="@drawable/bgbtnblue"
+                    android:padding="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="@string/data_base"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="10dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:text="@string/card_view_text"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_note_view_pager_constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fragment_note_indicator_constraint"
-        android:gravity="center"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/fragment_note_view_pager2"/>
+        android:layout_height="162dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/fragment_note_view_data_card_view"
+        tools:layout_editor_absoluteX="30dp">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/fragment_note_view_pager2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/fragment_note_indicator_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/fragment_note_view_pager2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 <androidx.cardview.widget.CardView
     android:id="@+id/fragment_note_recycler_card_view"
@@ -90,7 +138,7 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
     android:paddingBottom="5dp"
-    app:layout_constraintTop_toBottomOf="@+id/fragment_note_view_fragment"
+    app:layout_constraintTop_toBottomOf="@+id/fragment_note_view_pager_constraint"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintHorizontal_bias="0.479"

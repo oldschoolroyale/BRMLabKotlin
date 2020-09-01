@@ -3,8 +3,6 @@ package com.brm.brmlabkotlin.provider
 import com.brm.brmlabkotlin.presenter.DoctorAddPresenter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.util.*
-import kotlin.collections.HashMap
 
 class DoctorAddProvider(val presenter: DoctorAddPresenter) {
     fun parse(array: Array<String>, hashMap: HashMap<String, String>){

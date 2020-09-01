@@ -1,7 +1,6 @@
 package com.brm.brmlabkotlin.fragments
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
@@ -18,7 +17,6 @@ import com.agrawalsuneet.dotsloader.loaders.LazyLoader
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.brm.brmlabkotlin.R
-import com.brm.brmlabkotlin.activities.NoteAddActivity
 import com.brm.brmlabkotlin.adapter.DataBaseAdapter
 import com.brm.brmlabkotlin.helper.DataBaseHelper
 import com.brm.brmlabkotlin.model.DataBaseModel
@@ -126,11 +124,12 @@ class DataBaseFragment : MvpAppCompatFragment(), DataBaseView{
 
     override fun itemClick(position: Int) {
         val dbHelper = DataBaseHelper()
-        val intent = Intent(context, NoteAddActivity::class.java)
-        intent.putExtra("model", dbHelper.sendInformation(
-            localArray,
-        position,
-        true))
+        if (spinner.selectedItemPosition == 0){
+            dbHelper.sendInformation(localArray, position, true, context)
+        }
+        else{
+            dbHelper.sendInformation(localArray, position, false, context)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

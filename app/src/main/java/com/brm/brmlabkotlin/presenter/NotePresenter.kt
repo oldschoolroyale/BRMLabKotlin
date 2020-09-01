@@ -3,6 +3,7 @@ package com.brm.brmlabkotlin.presenter
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.brm.brmlabkotlin.model.NoteModel
+import com.brm.brmlabkotlin.model.ViewPagerModel
 import com.brm.brmlabkotlin.provider.NoteProvider
 import com.brm.brmlabkotlin.view.NoteView
 
@@ -27,14 +28,16 @@ class NotePresenter : MvpPresenter<NoteView>() {
         viewState.endLoading()
         viewState.loadList(list = list)
     }
-
     fun setUpAccount(array: Array<String>){
         viewState.setUpAccount(array = array)
     }
-
     fun showError(error: String){
-        viewState.endLoading()
         viewState.showError(error = error)
+    }
+    fun viewPagerLoad(list: ArrayList<ViewPagerModel>){
+        if (list.isNotEmpty()) {
+            viewState.viewPagerAdapter(list)
+        }
     }
 
 }

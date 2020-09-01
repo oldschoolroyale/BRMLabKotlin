@@ -2,6 +2,7 @@ package com.brm.brmlabkotlin.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.brm.brmlabkotlin.model.DoctorModel
 import com.brm.brmlabkotlin.provider.DoctorAddProvider
 import com.brm.brmlabkotlin.view.DoctorAddView
 

@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,12 +22,16 @@ import com.brm.brmlabkotlin.adapter.NotesAdapter
 import com.brm.brmlabkotlin.adapter.ViewPagerAdapter
 import com.brm.brmlabkotlin.helper.ViewPagerHelper
 import com.brm.brmlabkotlin.model.NoteModel
+import com.brm.brmlabkotlin.model.ViewPagerModel
 import com.brm.brmlabkotlin.presenter.NotePresenter
 import com.brm.brmlabkotlin.view.NoteView
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_note.*
+import kotlinx.android.synthetic.main.fragment_note.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -38,12 +43,14 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     private lateinit var imageView: ImageView
     private lateinit var nameText: TextView
     private lateinit var dateText: TextView
-
+    private lateinit var indicatorLayout: LinearLayout
+    private lateinit var viewPager: ViewPager2
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NotesAdapter
     private var localArray: ArrayList<NoteModel> = ArrayList()
     private var viewHelper: ViewPagerHelper = ViewPagerHelper()
     private lateinit var localTypedArray: Array<String>
+    private lateinit var viewPagerConstraintLayout: ConstraintLayout
 
     //date
     private var yearString: String = SimpleDateFormat("yyyy").format(Calendar.getInstance().time)
@@ -79,24 +86,18 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
             )
             fragmentManager?.let { it1 -> dpd.show(it1, "Datepickerdialog") }
         }
+        view.fragment_note_view_data_card_view.setOnClickListener {
+            findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToDoctorListFragment(
+                town = localTypedArray[2],
+                region = localTypedArray[3]
+            ))
+        }
 
         //ViewPagerAdapter
-        val viewPagerAdapter = ViewPagerAdapter(
-            viewHelper.modelList(),
-                this
-        )
-        val viewPager : ViewPager2 = view.findViewById(R.id.fragment_note_view_pager2)
-        viewPager.adapter = viewPagerAdapter
-        viewPagerAdapter.notifyDataSetChanged()
-        val indicatorLayout: LinearLayout = view.findViewById(R.id.fragment_note_indicator_constraint)
-        context?.let { viewHelper.setUpIndicator(viewPagerAdapter, indicatorLayout, it) }
-        context?.let { viewHelper.setCurrentIndicator(0, indicatorLayout, it) }
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                context?.let { viewHelper.setCurrentIndicator(position, indicatorLayout, it) }
-            }
-        })
+        indicatorLayout = view.findViewById(R.id.fragment_note_indicator_constraint)
+        viewPager= view.findViewById(R.id.fragment_note_view_pager2)
+        viewPagerConstraintLayout = view.findViewById(R.id.fragment_note_view_pager_constraint)
+        viewPagerConstraintLayout.visibility = View.GONE
 
         //Recycler
         adapter = NotesAdapter(this)
@@ -132,6 +133,7 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
         loader.visibility = View.VISIBLE
         fragment_note_ll_empty.visibility = View.GONE
         recyclerView.visibility = View.GONE
+
     }
 
     override fun endLoading() {
@@ -147,7 +149,7 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     }
 
     override fun setUpAccount(array: Array<String>) {
-        array[0].let { url -> Picasso.with(context).load(url).into(imageView)  }
+        array[0].let { url -> Picasso.with(context).load(url).placeholder(R.drawable.ic_baseline_account_circle_24).into(imageView) }
         nameText.text = array[1]
         localTypedArray = array
     }
@@ -164,10 +166,25 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     }
 
     override fun viewPagerClick(position: Int) {
-        findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToDoctorListFragment(
-            town = localTypedArray[2],
-            region = localTypedArray[3]
-        ))
+
+    }
+
+    override fun viewPagerAdapter(list: ArrayList<ViewPagerModel>) {
+       viewPagerConstraintLayout.visibility = View.VISIBLE
+        val viewPagerAdapter = ViewPagerAdapter(
+            list,
+            this
+        )
+        viewPager.adapter = viewPagerAdapter
+        viewPagerAdapter.notifyDataSetChanged()
+        context?.let { viewHelper.setUpIndicator(viewPagerAdapter, indicatorLayout, it) }
+        context?.let { viewHelper.setCurrentIndicator(0, indicatorLayout, it) }
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                context?.let { viewHelper.setCurrentIndicator(position, indicatorLayout, it) }
+            }
+        })
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {

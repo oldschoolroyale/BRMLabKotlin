@@ -1,6 +1,5 @@
 package com.brm.brmlabkotlin.helper
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.brm.brmlabkotlin.R
 import com.brm.brmlabkotlin.adapter.ViewPagerAdapter
-import com.brm.brmlabkotlin.model.ViewPagerModel
 
 class ViewPagerHelper {
 
@@ -60,14 +58,6 @@ class ViewPagerHelper {
                 )
             }
         }
-    }
-
-    fun modelList(): ArrayList<ViewPagerModel>{
-        val viewPagerList: ArrayList<ViewPagerModel> = ArrayList()
-        viewPagerList.clear()
-       viewPagerList.add(ViewPagerModel("https://clck.ru/QTave","Дата база врачей", 0))
-       viewPagerList.add(ViewPagerModel("https://clck.ru/QTbBU","Дата база аптек", 1))
-        return viewPagerList
     }
 
 }

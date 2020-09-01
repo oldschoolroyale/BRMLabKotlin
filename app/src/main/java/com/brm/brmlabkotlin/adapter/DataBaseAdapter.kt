@@ -19,6 +19,7 @@ class DataBaseAdapter(var dataBaseView: DataBaseView) : RecyclerView.Adapter<Rec
         dataBaseList.addAll(dataNewList)
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return DataBaseViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.data_base_list_item, parent, false)
         )
@@ -33,6 +34,7 @@ class DataBaseAdapter(var dataBaseView: DataBaseView) : RecyclerView.Adapter<Rec
             holder.bind(dataBaseList = dataBaseList[position], dataBaseView = dataBaseView)
         }
     }
+
     private class DataBaseViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var nameText = view.findViewById(R.id.data_base_list_item_name) as TextView
         var addressText = view.findViewById(R.id.data_base_list_item_address) as TextView
@@ -45,6 +47,9 @@ class DataBaseAdapter(var dataBaseView: DataBaseView) : RecyclerView.Adapter<Rec
         fun bind(dataBaseList: DataBaseModel, dataBaseView: DataBaseView){
             nameText.text = dataBaseList.name
             addressText.text = dataBaseList.address
+            itemView.setOnClickListener{
+                dataBaseView.itemClick(adapterPosition)
+            }
             if (dataBaseList.specialization.isNullOrEmpty()){
                 phoneText.text = dataBaseList.phone
             }
