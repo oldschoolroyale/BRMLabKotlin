@@ -20,7 +20,8 @@
     <string name="add">Добавить</string>
     <string name="pick_date">Выберите дату</string>
     <string name="data_base">База данных</string>
-    <string name="card_view_text">База данных врачей и аптек. Возможность добавить и отобразить врача для дальнешего взаимодействия</string>
+    <string name="data_base_title">База данных врачей\n и аптек</string>
+    <string name="medication_list">Список препаратов</string>
 
     <string-array name="dataCategory">
         <item>Doctor</item>

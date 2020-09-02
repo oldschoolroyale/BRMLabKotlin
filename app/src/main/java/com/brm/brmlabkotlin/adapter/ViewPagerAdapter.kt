@@ -7,12 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.brm.brmlabkotlin.R
+import com.brm.brmlabkotlin.model.NoteModel
 import com.brm.brmlabkotlin.model.ViewPagerModel
 import com.brm.brmlabkotlin.view.NoteView
 import com.squareup.picasso.Picasso
 
-class ViewPagerAdapter(private val viewPagerModel: ArrayList<ViewPagerModel>, var noteView: NoteView) :
-    RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+class ViewPagerAdapter(var noteView: NoteView) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+    private var viewPagerModel: ArrayList<ViewPagerModel> = ArrayList()
 
     inner class ViewPagerViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val imageView = view.findViewById(R.id.view_pager_image) as ImageView
@@ -43,5 +44,11 @@ class ViewPagerAdapter(private val viewPagerModel: ArrayList<ViewPagerModel>, va
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         holder.bind(viewPagerModel[position], noteView = noteView)
+    }
+
+    fun setUpUserList(userNewList: ArrayList<ViewPagerModel>){
+        viewPagerModel.clear()
+        viewPagerModel.addAll(userNewList)
+        notifyDataSetChanged()
     }
 }

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F9FBFF">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="230dp"
@@ -15,6 +16,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_round_backspace_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fragment_note_circle_image"
         android:layout_width="71dp"
@@ -27,6 +37,7 @@
         app:civ_border_width="2dp"
         app:civ_border_color="#fff"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,19 +45,9 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="32dp"
         android:textColor="#fff"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragment_note_circle_image"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@id/fragment_note_circle_image"
-        app:layout_constraintTop_toBottomOf="@id/fragment_note_name"
-        android:text="Мед. представитель"
-        android:textColor="#fff"
-        android:textSize="16sp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fragment_note_view_data_card_view"
@@ -58,56 +59,69 @@
         android:overScrollMode="never"
         app:cardCornerRadius="20dp"
         app:layout_constraintTop_toBottomOf="@id/fragment_note_circle_image">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#11478F"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="15dp">
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/link"
-                    android:background="@drawable/bgbtnblue"
-                    android:padding="5dp"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="@string/data_base"
+                    android:textSize="15sp"
+                    android:layout_margin="15dp"
+                    android:layout_toStartOf="@id/fragment_note_image_lamp"
+                    android:text="@string/data_base_title"
                     android:textColor="@android:color/white"
                     android:layout_marginStart="10dp"/>
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/lamp"
+                android:layout_marginBottom="-5dp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/fragment_note_image_lamp"
+                android:layout_above="@+id/fragment_note_ll_card_view"
+                android:layout_marginEnd="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="#325D97"
+                android:orientation="horizontal"
+                android:id="@+id/fragment_note_ll_card_view"
+                >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_baseline_attachment_24"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/data_base"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:text="@string/card_view_text"
-                />
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_note_view_pager_constraint"
         android:layout_width="match_parent"
-        android:layout_height="162dp"
-        android:layout_marginTop="24dp"
-        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
         app:layout_constraintTop_toBottomOf="@id/fragment_note_view_data_card_view"
         tools:layout_editor_absoluteX="30dp">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/fragment_note_view_pager2"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,58 +133,33 @@
             android:id="@+id/fragment_note_indicator_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/fragment_note_view_pager2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView
     android:id="@+id/fragment_note_recycler_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="24dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="25dp"
     android:background="#fff"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="6dp"
     android:paddingBottom="5dp"
     app:layout_constraintTop_toBottomOf="@+id/fragment_note_view_pager_constraint"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintHorizontal_bias="0.479"
-    android:layout_marginBottom="15dp">
+    android:layout_marginBottom="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_alignParentStart="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:textColor="#818181"/>
-            <TextView
-                android:id="@+id/fragment_note_date_text"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:textColor="#818181"/>
-        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/fragment_note_ll_empty"
@@ -192,13 +181,11 @@
                 android:gravity="center"
                 android:textSize="15sp"/>
         </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fragment_note_recycler_view"
             android:layout_marginBottom="15dp"/>
-
         <com.agrawalsuneet.dotsloader.loaders.LazyLoader
             android:id="@+id/fragment_notes_dots_loader"
             android:layout_width="wrap_content"
@@ -213,6 +200,30 @@
             app:lazyloader_secondDelayDur="300"
             app:lazyloader_secondDotColor="@color/colorPrimary"
             app:lazyloader_thirdDotColor="@color/yellow"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#325D97">
+            <TextView
+                android:layout_alignParentStart="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/task"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"/>
+            <TextView
+                android:id="@+id/fragment_note_date_text"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
     </LinearLayout>
 
 
