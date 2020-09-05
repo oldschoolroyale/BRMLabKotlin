@@ -1,5 +1,6 @@
 package com.brm.brmlabkotlin.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import com.brm.brmlabkotlin.R
 import com.brm.brmlabkotlin.model.NoteModel
 import com.brm.brmlabkotlin.model.ViewPagerModel
 import com.brm.brmlabkotlin.view.NoteView
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 
 class ViewPagerAdapter(var noteView: NoteView) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
@@ -21,7 +24,15 @@ class ViewPagerAdapter(var noteView: NoteView) : RecyclerView.Adapter<ViewPagerA
 
         fun bind(viewPagerModel: ViewPagerModel, noteView: NoteView){
             textView.text = viewPagerModel.title
-            viewPagerModel.image.let { url -> Picasso.with(itemView.context).load(url).into(imageView)  }
+            viewPagerModel.image.let { url -> Picasso.with(itemView.context).load(url).networkPolicy(NetworkPolicy.OFFLINE).into(imageView, object : Callback{
+                override fun onSuccess() {
+                    Log.d("MyLog", "Success!")
+                }
+
+                override fun onError() {
+                    viewPagerModel.image.let { url -> Picasso.with(itemView.context).load(url).into(imageView) }
+                }
+            })  }
             itemView.setOnClickListener {
                 noteView.viewPagerClick(adapterPosition)
             }

@@ -1,11 +1,8 @@
 package com.brm.brmlabkotlin.fragments
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -29,12 +26,8 @@ import com.brm.brmlabkotlin.model.ViewPagerModel
 import com.brm.brmlabkotlin.presenter.NotePresenter
 import com.brm.brmlabkotlin.view.NoteView
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Callback
-import com.squareup.picasso.NetworkPolicy
-import com.squareup.picasso.Picasso
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_note.*
-import kotlinx.android.synthetic.main.fragment_note.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -43,8 +36,6 @@ import kotlin.collections.ArrayList
 class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSetListener {
 
     private lateinit var loader: LazyLoader
-    private lateinit var imageView: ImageView
-    private lateinit var nameText: TextView
     private lateinit var dateText: TextView
     private lateinit var indicatorLayout: LinearLayout
     private lateinit var viewPager: ViewPager2
@@ -75,8 +66,6 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
         (activity as AppCompatActivity).supportActionBar?.hide()
 
         loader = view.findViewById(R.id.fragment_notes_dots_loader)
-        imageView = view.findViewById(R.id.fragment_note_circle_image)
-        nameText = view.findViewById(R.id.fragment_note_name)
         dateText = view.findViewById(R.id.fragment_note_date_text)
         dateText.text = takenData
         dateText.setOnClickListener {
@@ -163,11 +152,7 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
         fragment_note_ll_empty.visibility = View.VISIBLE
     }
 
-
-    @SuppressLint("SetTextI18n")
     override fun setUpAccount(array: Array<String>) {
-        array[0].let { url -> Picasso.with(context).load(url).placeholder(R.drawable.ic_baseline_account_circle_24).into(imageView) }
-        nameText.text = array[1] + "\nМед. представитель"
         localTypedArray = array
     }
 
@@ -179,7 +164,14 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     }
 
     override fun itemClick(position: Int) {
-        findNavController().navigate(R.id.action_noteFragment_to_updateFragment)
+        findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToUpdateFragment(
+            name = localArray[position].name!!,
+            address = localArray[position].address!!,
+            comment = localArray[position].comment!!,
+            year = yearString,
+            month = monthString,
+            day = dayString
+        ))
     }
 
     override fun viewPagerClick(position: Int) {
@@ -207,6 +199,5 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
         dateText.text = takenData
         presenter.load(token = token, year = yearString, month = monthString, day = dayString)
     }
-
 
    }

@@ -31,17 +31,44 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_noteFragment_to_faqFragment"
+            app:destination="@id/faqFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.brm.brmlabkotlin.fragments.UpdateFragment"
-        android:label="fragment_update"
-        tools:layout="@layout/fragment_update" >
+        android:label="Работа с визитом"
+        tools:layout="@layout/fragment_update">
         <action
             android:id="@+id/action_updateFragment_to_noteFragment"
             app:destination="@id/noteFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
+        <argument
+            android:name="name"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="comment"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="year"
+            app:argType="string" />
+        <argument android:name="month"
+            app:argType="string" />
+        <argument
+            android:name="day"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/doctorListFragment"
@@ -111,10 +138,21 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.brm.brmlabkotlin.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_noteFragment"
+            app:destination="@id/noteFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.brm.brmlabkotlin.fragments.FaqFragment"
+        android:label="Помощь"
+        tools:layout="@layout/fragment_faq">
+        <action
+            android:id="@+id/action_faqFragment_to_noteFragment"
             app:destination="@id/noteFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />

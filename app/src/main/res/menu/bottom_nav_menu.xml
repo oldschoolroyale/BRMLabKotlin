@@ -8,10 +8,16 @@
         android:orderInCategory="1"
         android:icon="@drawable/ic_baseline_home_24"/>
 
+    <item android:id="@+id/faqFragment"
+        android:title="Помощь"
+        app:showAsAction="always"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_baseline_new_releases_24"/>
+
     <item android:id="@+id/profileFragment"
         android:title="Профиль"
         app:showAsAction="always"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:icon="@drawable/ic_baseline_person_24"/>
 
 
