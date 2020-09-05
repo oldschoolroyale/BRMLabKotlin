@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.brm.brmlabkotlin.fragments.UpdateFragment"
+        android:name="com.brm.brmlabkotlin.fragments.UpdateFragmentDoctor"
         android:label="Работа с визитом"
         tools:layout="@layout/fragment_update">
         <action
@@ -68,6 +68,9 @@
             app:argType="string" />
         <argument
             android:name="day"
+            app:argType="string" />
+        <argument
+            android:name="id"
             app:argType="string" />
     </fragment>
     <fragment

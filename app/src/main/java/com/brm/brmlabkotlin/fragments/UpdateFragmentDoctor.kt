@@ -7,12 +7,16 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.brm.brmlabkotlin.R
 import com.brm.brmlabkotlin.databinding.FragmentUpdateBinding
+import com.brm.brmlabkotlin.presenter.UpdateDoctorPresenter
+import com.brm.brmlabkotlin.view.UpdateDoctor
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UpdateFragment :  MvpAppCompatFragment() {
+class UpdateFragmentDoctor :  MvpAppCompatFragment(), UpdateDoctor {
 
 
     //date
@@ -24,7 +28,10 @@ class UpdateFragment :  MvpAppCompatFragment() {
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding!!
 
-    private val args by navArgs<UpdateFragmentArgs>()
+    @InjectPresenter
+    lateinit var presenter: UpdateDoctorPresenter
+
+    private val args by navArgs<UpdateFragmentDoctorArgs>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +43,11 @@ class UpdateFragment :  MvpAppCompatFragment() {
         if (checkDate()){
             setHasOptionsMenu(true)
         }
+        val user = FirebaseAuth.getInstance().currentUser?.uid
+
+        presenter = UpdateDoctorPresenter(arrayOf(user!!, yearString, monthString, dayString,
+        args.id), requireContext())
+
         binding.args = args
         return binding.root
     }
@@ -51,18 +63,22 @@ class UpdateFragment :  MvpAppCompatFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
             if (item.itemId == R.id.update_menu_start){
-
+                presenter.startVisit()
             }
             if (item.itemId == R.id.update_menu_stop){
 
             }
             if (item.itemId == R.id.update_menu_save){
-
+                presenter.sendInformation(binding.currentDescriptionEt.text.toString())
             }
         return super.onOptionsItemSelected(item)
     }
 
     private fun checkDate(): Boolean{
         return yearString == args.year && monthString == args.month && dayString == args.day
+    }
+
+    override fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_LONG).show()
     }
 }

@@ -1,6 +1,7 @@
 package com.brm.brmlabkotlin.model
 
 class NoteModel {
+    var id: String? = null
     var name: String? = null
     var address: String? = null
     var visit: String? = null
@@ -9,7 +10,7 @@ class NoteModel {
 
     constructor()
 
-    constructor(name: String?, address: String?, visit: String?, type: String?, comment: String?) {
+    constructor(name: String?, address: String?, visit: String?, type: String?, comment: String?, id: String?) {
         this.name = name
         this.address = address
         this.visit = visit

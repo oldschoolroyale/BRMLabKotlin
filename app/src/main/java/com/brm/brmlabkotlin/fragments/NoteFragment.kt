@@ -170,7 +170,8 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
             comment = localArray[position].comment!!,
             year = yearString,
             month = monthString,
-            day = dayString
+            day = dayString,
+            id = localArray[position].id!!
         ))
     }
 
