@@ -38,6 +38,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_noteFragment_to_updatePharmacyFragment"
+            app:destination="@id/updatePharmacyFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
@@ -159,5 +166,26 @@
             app:destination="@id/noteFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePharmacyFragment"
+        android:name="com.brm.brmlabkotlin.fragments.UpdatePharmacyFragment"
+        android:label="fragment_update_pharmacy"
+        tools:layout="@layout/fragment_update_pharmacy" >
+        <action
+            android:id="@+id/action_updatePharmacyFragment_to_noteFragment"
+            app:destination="@id/noteFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
+        <argument android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument android:name="comment"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

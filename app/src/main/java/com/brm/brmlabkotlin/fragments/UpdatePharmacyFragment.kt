@@ -3,45 +3,45 @@ package com.brm.brmlabkotlin.fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.brm.brmlabkotlin.R
-import com.brm.brmlabkotlin.databinding.FragmentUpdateBinding
-import com.brm.brmlabkotlin.presenter.UpdateDoctorPresenter
+import com.brm.brmlabkotlin.databinding.FragmentUpdatePharmacyBinding
+import com.brm.brmlabkotlin.presenter.UpdatePharmacyPresenter
 import com.brm.brmlabkotlin.view.UpdateDoctor
 import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UpdateFragmentDoctor :  MvpAppCompatFragment(), UpdateDoctor {
+class UpdatePharmacyFragment : MvpAppCompatFragment(), UpdateDoctor {
 
-    companion object{
-        private var LOCATION_REQUEST_CODE = 10001
-    }
     //date
     private var yearString: String = SimpleDateFormat("yyyy").format(Calendar.getInstance().time)
     private var monthString: String = SimpleDateFormat("M").format(Calendar.getInstance().time)
     private var dayString: String = SimpleDateFormat("d").format(Calendar.getInstance().time)
 
-
-    private var _binding: FragmentUpdateBinding? = null
+    private var _binding: FragmentUpdatePharmacyBinding? = null
     private val binding get() = _binding!!
 
-    @InjectPresenter
-    lateinit var presenter: UpdateDoctorPresenter
+    private val args by navArgs<UpdatePharmacyFragmentArgs>()
 
-    private val args by navArgs<UpdateFragmentDoctorArgs>()
+    @InjectPresenter
+    lateinit var presenter: UpdatePharmacyPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+    _binding = FragmentUpdatePharmacyBinding.inflate(inflater, container, false)
+
         (activity as AppCompatActivity).supportActionBar?.show()
 
-        if (checkDate(yearString, monthString, dayString)){
+        if (UpdateFragmentDoctor().checkDate(
+                yearString, monthString, dayString
+            )){
             setHasOptionsMenu(true)
         }
 
@@ -50,29 +50,22 @@ class UpdateFragmentDoctor :  MvpAppCompatFragment(), UpdateDoctor {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.update_menu, menu)
+        inflater.inflate(R.menu.update_pharmacy_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val user = FirebaseAuth.getInstance().currentUser?.uid
-
-            if (item.itemId == R.id.update_menu_save){
-                presenter.sendInformation(binding.currentDescriptionEt.text.toString(),
+        when(item.itemId){
+            R.id.save_update_pharmacy_menu ->
+            {
+                presenter.send(binding.fragmentUpdatePharmacyEt.text.toString(),
                     arrayOf(user!!, yearString, monthString, dayString,
-                        args.id))
+                    args.id)
+                )
             }
+        }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun checkDate(year: String,
-    month: String, day: String): Boolean{
-        return year == args.year && month == args.month && day == args.day
     }
 
     override fun showError(error: String) {

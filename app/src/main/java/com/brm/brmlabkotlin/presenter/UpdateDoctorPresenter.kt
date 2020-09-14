@@ -8,11 +8,8 @@ import com.brm.brmlabkotlin.view.UpdateDoctor
 
 @InjectViewState
 class UpdateDoctorPresenter: MvpPresenter<UpdateDoctor>() {
-    fun sendInformation(comment: String, array: Array<String>, context: Context){
-        UpdateDoctorProvider(this, array, context).parse(comment)
-    }
-    fun startVisit(array: Array<String>, context: Context){
-        UpdateDoctorProvider(this, array, context).parseVisit()
+    fun sendInformation(comment: String, array: Array<String>){
+        UpdateDoctorProvider(this).parse(comment, array)
     }
     fun showError(error: String){
         viewState.showError(error = error)

@@ -29,6 +29,8 @@
     <string name="good_day">Добрый день!</string>
     <string name="mission_view">Обзор задач</string>
     <string name="extras">Дополнения</string>
+    <string name="stock">Остаток</string>
+    <string name="order">Бронь</string>
 
     <string-array name="dataCategory">
         <item>Doctor</item>
