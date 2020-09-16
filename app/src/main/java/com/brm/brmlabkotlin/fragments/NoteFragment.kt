@@ -164,15 +164,28 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     }
 
     override fun itemClick(position: Int) {
-        findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToUpdateFragment(
-            name = localArray[position].name!!,
-            address = localArray[position].address!!,
-            comment = localArray[position].comment!!,
-            year = yearString,
-            month = monthString,
-            day = dayString,
-            id = localArray[position].id!!
-        ))
+        if (localArray[position].type.equals("Визит к врачу")){
+            findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToUpdateFragment(
+                name = localArray[position].name!!,
+                address = localArray[position].address!!,
+                comment = localArray[position].comment!!,
+                year = yearString,
+                month = monthString,
+                day = dayString,
+                id = localArray[position].id!!
+            ))
+        }
+        else{
+            findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToUpdatePharmacyFragment(
+                name = localArray[position].name!!,
+                address = localArray[position].address!!,
+                comment = localArray[position].comment!!,
+                year = yearString,
+                month = monthString,
+                day = dayString,
+                id = localArray[position].id!!
+        ))}
+
     }
 
     override fun viewPagerClick(position: Int) {
@@ -182,6 +195,7 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
     override fun viewPagerAdapter(list: ArrayList<ViewPagerModel>) {
         viewPagerConstraintLayout.visibility = View.VISIBLE
         viewPagerAdapter.setUpUserList(list)
+        viewPagerAdapter.notifyDataSetChanged()
         context?.let { viewHelper.setUpIndicator(viewPagerAdapter, indicatorLayout, it) }
         context?.let { viewHelper.setCurrentIndicator(0, indicatorLayout, it) }
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
@@ -200,5 +214,7 @@ class NoteFragment : MvpAppCompatFragment(), NoteView, DatePickerDialog.OnDateSe
         dateText.text = takenData
         presenter.load(token = token, year = yearString, month = monthString, day = dayString)
     }
+
+
 
    }

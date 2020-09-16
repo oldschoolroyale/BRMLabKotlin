@@ -1,6 +1,7 @@
 package com.brm.brmlabkotlin.helper
 
 import android.content.Context
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -8,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.brm.brmlabkotlin.R
 import com.brm.brmlabkotlin.adapter.ViewPagerAdapter
+import java.util.logging.Logger
 
 class ViewPagerHelper {
 
@@ -15,7 +17,9 @@ class ViewPagerHelper {
                                indicatorLayout: LinearLayout,
     context: Context
     ){
+
         val indicators = arrayOfNulls<ImageView>(viewPagerAdapter.itemCount)
+
         val layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT

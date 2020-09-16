@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -67,10 +68,14 @@ class UpdateFragmentDoctor :  MvpAppCompatFragment(), UpdateDoctor {
                     arrayOf(user!!, yearString, monthString, dayString,
                         args.id))
             }
+        if (item.itemId == R.id.update_menu_delete){
+            presenter.startDelete(arrayOf(user!!, yearString, monthString, dayString,
+                    args.id))
+        }
         return super.onOptionsItemSelected(item)
     }
 
-    fun checkDate(year: String,
+    private fun checkDate(year: String,
     month: String, day: String): Boolean{
         return year == args.year && month == args.month && day == args.day
     }
@@ -78,4 +83,10 @@ class UpdateFragmentDoctor :  MvpAppCompatFragment(), UpdateDoctor {
     override fun showError(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_LONG).show()
     }
+
+    override fun goBack(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        findNavController().navigate(UpdateFragmentDoctorDirections.actionUpdateFragmentToNoteFragment())
+    }
+
 }

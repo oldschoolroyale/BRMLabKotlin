@@ -8,11 +8,20 @@ import com.brm.brmlabkotlin.view.UpdateDoctor
 
 @InjectViewState
 class UpdatePharmacyPresenter: MvpPresenter<UpdateDoctor>() {
+
     fun send(comment: String, array: Array<String>){
-        UpdatePharmacyProvider(this).parse(comment, array)
+        UpdatePharmacyProvider(this, array).parse(comment)
     }
 
     fun showError(error: String){
         viewState.showError(error)
+    }
+
+    fun delete(error: String){
+        viewState.goBack(error)
+    }
+
+    fun startDelete(array: Array<String>){
+        UpdatePharmacyProvider(this, array).parseDelete()
     }
 }

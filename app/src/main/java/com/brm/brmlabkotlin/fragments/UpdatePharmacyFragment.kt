@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -39,7 +40,7 @@ class UpdatePharmacyFragment : MvpAppCompatFragment(), UpdateDoctor {
 
         (activity as AppCompatActivity).supportActionBar?.show()
 
-        if (UpdateFragmentDoctor().checkDate(
+        if (checkDate(
                 yearString, monthString, dayString
             )){
             setHasOptionsMenu(true)
@@ -64,11 +65,32 @@ class UpdatePharmacyFragment : MvpAppCompatFragment(), UpdateDoctor {
                     args.id)
                 )
             }
+            R.id.stock_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToStockFragment())
+            R.id.order_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToOrderFragment())
+            
+            R.id.delete_update_pharmacy_menu -> presenter.startDelete(arrayOf(
+                user!!, yearString, monthString, dayString, args.id))
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun showError(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_LONG).show()
+    }
+
+    override fun goBack(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToNoteFragment())
+    }
+
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun checkDate(year: String,
+                          month: String, day: String): Boolean{
+        return year == args.year && month == args.month && day == args.day
     }
 }

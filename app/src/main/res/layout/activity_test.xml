@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TestActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginStart="33dp"
+    android:layout_marginEnd="33dp">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:text="Начать работу"
+        android:id="@+id/activity_test_start"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:text="Закончить работу"
+        android:id="@+id/activity_test_stop"/>
+</LinearLayout>

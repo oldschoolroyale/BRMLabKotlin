@@ -31,6 +31,7 @@
     <string name="extras">Дополнения</string>
     <string name="stock">Остаток</string>
     <string name="order">Бронь</string>
+    <string name="delete">Удалить</string>
 
     <string-array name="dataCategory">
         <item>Doctor</item>

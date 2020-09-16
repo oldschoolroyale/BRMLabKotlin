@@ -14,27 +14,32 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class UpdateDoctorProvider(val presenter: UpdateDoctorPresenter) {
+class UpdateDoctorProvider(val presenter: UpdateDoctorPresenter, array: Array<String>) {
 
+    private var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+        //Ref
+        .child("Notes").child(array[0])
+        //Date
+        .child(array[1]).child(array[2]).child(array[3])
+        //Id
+        .child(array[4])
 
-    fun parse(comment: String, array: Array<String>){
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
-            //Ref
-            .child("Notes").child(array[0])
-            //Date
-            .child(array[1]).child(array[2]).child(array[3])
-            //Id
-            .child(array[4])
+    fun parse(comment: String){
         reference.child("comment").setValue(comment).addOnCompleteListener {
             presenter.showError(checkForSuccessful(it))
         }
     }
 
-
      private fun checkForSuccessful(it: Task<Void>): String{
-        if (it.isSuccessful)
-            return "Успешно отправленно!"
+        return if (it.isSuccessful)
+            "Успешно отправленно!"
         else
-            return "Ошибка при отправлении!"
+            "Ошибка при отправлении!"
+    }
+
+    fun parseDelete(){
+        reference.removeValue().addOnCompleteListener {
+            presenter.delete(checkForSuccessful(it))
+        }
     }
 }

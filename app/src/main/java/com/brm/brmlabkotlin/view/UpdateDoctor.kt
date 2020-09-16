@@ -7,4 +7,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(value = AddToEndSingleStrategy::class)
 interface UpdateDoctor: MvpView {
     fun showError(error: String)
+    fun goBack(message: String)
 }
