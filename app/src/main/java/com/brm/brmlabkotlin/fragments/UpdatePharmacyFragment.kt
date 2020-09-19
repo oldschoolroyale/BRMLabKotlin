@@ -65,8 +65,14 @@ class UpdatePharmacyFragment : MvpAppCompatFragment(), UpdateDoctor {
                     args.id)
                 )
             }
-            R.id.stock_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToStockFragment())
-            R.id.order_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToOrderFragment())
+            R.id.stock_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToStockFragment(
+                id = args.id,
+                user = user!!
+            ))
+            R.id.order_update_pharmacy_menu -> findNavController().navigate(UpdatePharmacyFragmentDirections.actionUpdatePharmacyFragmentToOrderFragment(
+                id = args.id,
+                user = user!!
+            ))
             
             R.id.delete_update_pharmacy_menu -> presenter.startDelete(arrayOf(
                 user!!, yearString, monthString, dayString, args.id))

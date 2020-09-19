@@ -55,6 +55,8 @@ class DataBaseFragment : MvpAppCompatFragment(), DataBaseView{
         loader = view.findViewById(R.id.activity_data_base_dots_loader)
         emptyLayout = view.findViewById(R.id.activity_data_base_no_data_constraint)
         (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(false)
         setHasOptionsMenu(true)
 
         //getIntent

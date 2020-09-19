@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.brm.brmlabkotlin.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_note.*
 import kotlinx.android.synthetic.main.fragment_note_add.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -57,6 +57,7 @@ class NoteAddActivity: MvpAppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
+
     private fun setTextToTextView() {
         dateText.text = "Выбранно $dayString/$monthString/$yearString"
     }
