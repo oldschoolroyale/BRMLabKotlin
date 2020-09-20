@@ -29,7 +29,7 @@ class StockAdapter :
         viewType: Int
     ): StockViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.order_item, null)
+        val view: View = inflater.inflate(R.layout.stock_item, null)
         return StockViewHolder(view, StocksEditListener())
     }
 
@@ -91,8 +91,8 @@ class StockAdapter :
         stocksEditListener: StocksEditListener
     ) :
         RecyclerView.ViewHolder(view) {
-        var medicationsText: TextView = view.findViewById(R.id.order_item_name)
-        var editText: EditText = view.findViewById(R.id.order_item_quantity)
+        var medicationsText: TextView = view.findViewById(R.id.stock_item_name)
+        var editText: EditText = view.findViewById(R.id.stock_item_quantity)
         var stockText: TextView = view.findViewById(R.id.stock_item_stock)
         var fullText: TextView = view.findViewById(R.id.stock_item_full)
         var halfText: TextView = view.findViewById(R.id.stock_item_half)

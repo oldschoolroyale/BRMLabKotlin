@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.agrawalsuneet.dotsloader.loaders.LazyLoader
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.brm.brmlabkotlin.R
+import com.brm.brmlabkotlin.adapter.StockAdapter
 import com.brm.brmlabkotlin.model.StockModel
 import com.brm.brmlabkotlin.presenter.StockPresenter
 import com.brm.brmlabkotlin.view.StockView
@@ -23,7 +25,9 @@ class StockFragment : MvpAppCompatFragment(), StockView {
     private lateinit var loading: LazyLoader
     private lateinit var recyclerView: RecyclerView
     private lateinit var emptyLayout: LinearLayout
+
     private var localArray: ArrayList<StockModel> = ArrayList()
+    private lateinit var adapter: StockAdapter
 
     private val args by navArgs<StockFragmentArgs>()
 
@@ -40,6 +44,11 @@ class StockFragment : MvpAppCompatFragment(), StockView {
         loading = view.findViewById(R.id.fragment_stock_dots_loader)
         recyclerView = view.findViewById(R.id.fragment_stock_recycler)
         emptyLayout = view.findViewById(R.id.fragment_stock_empty_layout)
+
+        adapter = StockAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerView.setHasFixedSize(true)
 
         presenter.load(args.user)
 
@@ -66,6 +75,7 @@ class StockFragment : MvpAppCompatFragment(), StockView {
 
     override fun loadList(list: ArrayList<StockModel>) {
         recyclerView.visibility = View.VISIBLE
+        adapter.setUpUserList(list)
         localArray.clear()
         localArray.addAll(list)
 
