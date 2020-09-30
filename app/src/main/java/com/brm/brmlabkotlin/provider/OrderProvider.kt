@@ -65,7 +65,6 @@ class OrderProvider(val presenter: OrderPresenter): AsyncTask<String, Void, Void
         fun send(){
             Handler().postDelayed({
                 execute()
-                presenter.goBack()
             }, 1500)
         }
 
@@ -81,6 +80,11 @@ class OrderProvider(val presenter: OrderPresenter): AsyncTask<String, Void, Void
                     }
                 }
             return null
+        }
+
+        override fun onPostExecute(result: Void?) {
+            presenter.goBack()
+            super.onPostExecute(result)
         }
     }
 }

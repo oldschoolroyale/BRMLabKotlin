@@ -18,7 +18,9 @@ import com.brm.brmlabkotlin.presenter.CodeSendPresenter
 import com.brm.brmlabkotlin.view.CodeSendView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.jakewharton.rxbinding.widget.RxTextView
+import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.disposables.Disposable
+import java.util.function.Consumer
 
 
 class CodeSendFragment : MvpAppCompatFragment(), CodeSendView {
@@ -27,6 +29,7 @@ class CodeSendFragment : MvpAppCompatFragment(), CodeSendView {
     private lateinit var animButton: CircularProgressButton
     private lateinit var editText: EditText
     private  var mCurrentUser : FirebaseUser? = null
+    private lateinit var observer: Disposable
 
     @InjectPresenter
     lateinit var presenter: CodeSendPresenter
@@ -41,7 +44,7 @@ class CodeSendFragment : MvpAppCompatFragment(), CodeSendView {
         val mAuth = FirebaseAuth.getInstance()
         mCurrentUser = mAuth.currentUser
 
-        RxTextView.textChanges(editText)
+        observer = RxTextView.textChanges(editText)
             .subscribe{charSequence: CharSequence ->
                 if (charSequence.toString().isNotEmpty()){
                     animButton.setBackgroundResource(R.drawable.button_shape_blue)
@@ -60,6 +63,7 @@ class CodeSendFragment : MvpAppCompatFragment(), CodeSendView {
                     animButton.setOnClickListener { null }
                 }
             }
+
 
         return view
     }
@@ -92,4 +96,8 @@ class CodeSendFragment : MvpAppCompatFragment(), CodeSendView {
         super.onStart()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        observer.dispose()
+    }
 }

@@ -1,11 +1,11 @@
 package com.brm.brmlabkotlin.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.*
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +18,7 @@ import com.brm.brmlabkotlin.adapter.StockAdapter
 import com.brm.brmlabkotlin.model.StockModel
 import com.brm.brmlabkotlin.presenter.StockPresenter
 import com.brm.brmlabkotlin.view.StockView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class StockFragment : MvpAppCompatFragment(), StockView {
@@ -45,6 +46,7 @@ class StockFragment : MvpAppCompatFragment(), StockView {
         recyclerView = view.findViewById(R.id.fragment_stock_recycler)
         emptyLayout = view.findViewById(R.id.fragment_stock_empty_layout)
 
+        setHasOptionsMenu(true)
         adapter = StockAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -86,6 +88,28 @@ class StockFragment : MvpAppCompatFragment(), StockView {
     }
 
     override fun showAlert(message: String) {
-        TODO("Not yet implemented")
+        val bottomSheetDialog = BottomSheetDialog(
+            requireContext(), R.style.BottomSheetDialogTheme
+        )
+        val bottomSheetView: View = LayoutInflater.from(context)
+            .inflate(R.layout.layout_bottom_sheet,
+                view?.findViewById(R.id.bottomSheetContainer))
+        bottomSheetView.findViewById<TextView>(R.id.layout_bottom_sheet_textView).text = message
+        bottomSheetView.findViewById<Button>(R.id.layout_bottom_sheet_button_order).setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialog.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.stock_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.stock_menu_calculate -> presenter.startCalculation(localArray, "semi")
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

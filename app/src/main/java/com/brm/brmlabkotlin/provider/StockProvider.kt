@@ -52,4 +52,62 @@ class StockProvider(val presenter: StockPresenter): AsyncTask<String, Void, Void
         }
         return null
     }
+
+    class StockSend(val presenter: StockPresenter, array: Array<String>,
+                    list: ArrayList<StockModel>): AsyncTask<Double, Void,  Void>(){
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+            .child("Orders")
+                //DATE
+            .child(array[0]).child(array[1]).child(array[2])
+                //ID
+            .child(array[3])
+        var sendList = list
+
+        fun send(){
+            execute()
+        }
+        override fun doInBackground(vararg params: Double?): Void? {
+            val hashMap: HashMap<String, String> = HashMap()
+            for(i in sendList.indices){
+                if (sendList[i].quantity != 0){
+                    TODO("Потом доделаю")
+                }
+            }
+            return null
+        }
+
+    }
+
+    class CalculateChoose(val presenter: StockPresenter, val type: String,
+    val list: ArrayList<StockModel>): AsyncTask<Void, String, String>(){
+
+        fun calculate(){
+            execute()
+        }
+
+        override fun doInBackground(vararg params: Void?): String? {
+            var finalPrice = 0.0
+            for (i in list.indices){
+                if (list[i].quantity != 0 ) {
+                    finalPrice += (when (type) {
+                        "full" -> {
+                            list[i].full!! * list[i].quantity!!
+                        }
+                        "half" -> {
+                            (list[i].half!! * list[i].quantity!!) * 0.5
+                        }
+                        else -> {
+                            (list[i].semi!! * list[i].quantity!!) * 0.25
+                        }
+                    })
+                }
+            }
+            return "Предоплата состовляет : $finalPrice"
+        }
+
+        override fun onPostExecute(result: String) {
+            presenter.showCalculation(result)
+            super.onPostExecute(result)
+        }
+    }
 }

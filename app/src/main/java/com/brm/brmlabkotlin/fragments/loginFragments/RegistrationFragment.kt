@@ -18,7 +18,8 @@ import com.brm.brmlabkotlin.presenter.RegistrationPresenter
 import com.brm.brmlabkotlin.view.RegistrationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.jakewharton.rxbinding.widget.RxTextView
+import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.disposables.Disposable
 
 class RegistrationFragment : MvpAppCompatFragment(), RegistrationView {
     private lateinit var animButton : CircularProgressButton
@@ -27,6 +28,7 @@ class RegistrationFragment : MvpAppCompatFragment(), RegistrationView {
     private  var mCurrentUser : FirebaseUser? = null
     private var _binding: RegistrationFragmentBinding? = null
     private val binding get() = _binding!!
+    private lateinit var observer: Disposable
 
     @InjectPresenter
     lateinit var registrationPresenter: RegistrationPresenter
@@ -44,7 +46,7 @@ class RegistrationFragment : MvpAppCompatFragment(), RegistrationView {
         mPhoneNumber = binding.activityRegistrationPhoneNumber
         animButton = binding.activityRegistrationAnimBtn
 
-        RxTextView.textChanges(mPhoneNumber)
+        observer = RxTextView.textChanges(mPhoneNumber)
             .subscribe { charSequence: CharSequence? ->
                 if (charSequence.toString().isNotEmpty() && mCountryCode.text.isNotEmpty()){
                     animButton.setBackgroundResource(R.drawable.button_shape_blue)
@@ -97,5 +99,6 @@ class RegistrationFragment : MvpAppCompatFragment(), RegistrationView {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        observer.dispose()
     }
 }

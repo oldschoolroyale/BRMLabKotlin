@@ -21,7 +21,16 @@ class StockPresenter: MvpPresenter<StockView>() {
             viewState.loadList(list)
         }
     }
+
     fun showError(error: String){
         viewState.showError(error)
+    }
+
+    fun startCalculation(list: ArrayList<StockModel>, type: String){
+        StockProvider.CalculateChoose(this, type, list).calculate()
+    }
+
+    fun showCalculation(message: String){
+        viewState.showAlert(message)
     }
 }

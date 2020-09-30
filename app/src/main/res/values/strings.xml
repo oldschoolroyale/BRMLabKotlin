@@ -33,6 +33,8 @@
     <string name="order">Бронь</string>
     <string name="delete">Удалить</string>
     <string name="send">Отправить</string>
+    <string name="calculate">Посчитать</string>
+    <string name="prepay_cost">Стоимость предоплаты</string>
 
     <string-array name="dataCategory">
         <item>Doctor</item>
